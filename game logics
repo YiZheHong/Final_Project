@@ -1,0 +1,30 @@
+def firstPlayer():
+   if random.randint(0, 1) == 0:
+       return 'Player 2'
+   else:
+       return 'Player 1'
+
+def playAgain():
+   print('Do you want to play again?')
+   print()
+   return input().lower().startswith('y')
+
+def marchOn(board,letter,move):
+   board[move]=letter
+
+
+def win(b, l):
+   for i in range(0,6):
+       for x in range(i*7+1,i*7+4):
+           if b[x]==l and b[x+1]==l and b[x+2]==l and b[x+3]==l:
+               return True
+
+   for i in range(1,8):
+       for x in range(i,i+14):
+           if b[x]==l and b[x+7]==l and b[x+14]==l and b[x+21]==l:
+               return True
+
+   for i in range(0,3):
+       for x in range(1,5):
+           if b[x+i*7]==l and b[x+8+i*7]==l and b[x+16+i*7]==l and b[x+24+i*7]==l:
+               return True
