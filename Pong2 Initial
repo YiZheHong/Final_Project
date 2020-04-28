@@ -9,3 +9,39 @@ width = 550
 height = 400
 window = pygame.display.set_mode((width, height), 0, 32)
 pygame.display.set_caption('pong 2 player')
+
+downleft = 1
+downright = 3
+upleft = 7
+upright = 9
+
+dirs = [1,3,7,9]
+
+moveUp = False
+moveDown = False
+moveUp1 = False
+moveDown1 = False
+movespeed = 5
+        
+
+black = (0, 0,0)
+blue = (94,0,187)
+background=(153,217,234)
+
+
+block = {'rect':pygame.Rect(275, 200, 50, 50), 'color':blue, 'dir':dirs[random.randint(0,3)]}
+p1 = pygame.Rect(520, 160, 10, 100)
+p2 = pygame.Rect(20, 160, 10, 100)
+players = [p1,p2]
+
+
+player1 = 0
+player2 = 0
+
+font = pygame.font.SysFont('Impact 123',30)
+
+def printingCover(t, font, surface, x, y):
+    set1 = font.render(t, 1, black)
+    set2 = set1.get_rect()
+    set2.topleft = (x, y)
+    surface.blit(set1, set2)
