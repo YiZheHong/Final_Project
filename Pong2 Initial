@@ -1,0 +1,11 @@
+import pygame, sys, time, random
+from pygame.locals import *
+
+
+pygame.init()
+
+
+width = 550
+height = 400
+window = pygame.display.set_mode((width, height), 0, 32)
+pygame.display.set_caption('pong 2 player')
