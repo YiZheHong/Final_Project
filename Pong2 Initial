@@ -9,51 +9,39 @@ width = 550
 height = 400
 window = pygame.display.set_mode((width, height), 0, 32)
 pygame.display.set_caption('pong 2 player')
-while True:
-    for k in pygame.k.get():
-        if k.type == QUIT:
-            pygame.quit()
-            sys.exit()
-        if k.type == KEYDOWN:
-            if k.key == K_UP:
-                moveDown = False
-                moveUp = True
-            if k.key == ord('w'):
-                moveDown1 = False
-                moveUp1 = True
-            if k.key == K_DOWN:
-                moveUp = False
-                moveDown = True
-            if k.key == ord('s'):
-                moveUp1 = False
-                moveDown1 = True
-        if k.type == KEYUP:
-            if k.key == K_ESCAPE:
-                pygame.quit()
-                sys.exit()
-            if k.key == K_UP:
-                moveUp = False
-            if k.key == ord('w'):
-                moveUp1 = False
-            if k.key == K_DOWN:
-                moveDown = False
-            if k.key == ord('s'):
-                moveDown1 = False
 
-        if block['rect'].right > 550:
-            player1 += 1
-            block['rect'] = pygame.Rect(275, 200, 50, 50)
+downleft = 1
+downright = 3
+upleft = 7
+upright = 9
 
-        if block['rect'].left < 0:
-            player2 += 1
-            block['rect'] = pygame.Rect(275, 200, 50, 50)
-            
+dirs = [1,3,7,9]
 
-    window.fill(background)
+moveUp = False
+moveDown = False
+moveUp1 = False
+moveDown1 = False
+movespeed = 5
+        
 
-    pygame.draw.line(window, black, (0, 0), (550, 0), 9)
-    pygame.draw.line(window, black, (0,400), (550,400), 9)
-    printingCover('player 1', font, window, 20, 20)
-    printingCover('score: %s' % (player1), font, window, 20, 50)
-    printingCover('player 2', font, window, 310, 20)
-    printingCover('score: %s' % (player2), font, window, 310, 50)
+black = (0, 0,0)
+blue = (94,0,187)
+background=(153,217,234)
+
+
+block = {'rect':pygame.Rect(275, 200, 50, 50), 'color':blue, 'dir':dirs[random.randint(0,3)]}
+p1 = pygame.Rect(520, 160, 10, 100)
+p2 = pygame.Rect(20, 160, 10, 100)
+players = [p1,p2]
+
+
+player1 = 0
+player2 = 0
+
+font = pygame.font.SysFont('Impact 123',30)
+
+def printingCover(t, font, surface, x, y):
+    set1 = font.render(t, 1, black)
+    set2 = set1.get_rect()
+    set2.topleft = (x, y)
+    surface.blit(set1, set2)
