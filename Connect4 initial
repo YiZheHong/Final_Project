@@ -111,3 +111,50 @@ def full(board):
 
 print('Welcome to Connect Four!')
 print()
+while True:
+   tablero = [' '] * 43
+   player1Letter, player2Letter = Input()
+   t = firstPlayer()
+   print( t + ' will go first.')
+   print()
+   going = True
+
+   while going:
+       if t == 'Player 1':
+           display(tablero)
+           print('Player 1:')
+           move = (gpm(tablero))
+           marchOn(tablero, player1Letter, move)
+
+           if win(tablero, player1Letter):
+               display(tablero)
+               print('YAY! Player 1 has won the game!')
+               going = False
+           else:
+               if full(tablero):
+                   display(tablero)
+                   print('The game is a tie!')
+                   break
+               else:
+                   t = 'Player 2'
+
+       else:
+           display(tablero)
+           print('Player 2:')
+           move = (gpm(tablero))
+           marchOn(tablero, player2Letter, move)
+
+           if win(tablero, player2Letter):
+               display(tablero)
+               print('YAY! Player 2 has won the game!')
+               going = False
+           else:
+               if full(tablero):
+                   display(tablero)
+                   print('The game is a tie!')
+                   break
+               else:
+                   t = 'Player 1'
+
+   if not playAgain():
+       break
